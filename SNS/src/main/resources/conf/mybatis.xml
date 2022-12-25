@@ -20,4 +20,5 @@
     <mappers>
         <package name="com.reuleaux.sns.module.before.dao,com.reuleaux.sns.module.admin.dao"/>
     </mappers>
+<!--    -->
 </configuration>
