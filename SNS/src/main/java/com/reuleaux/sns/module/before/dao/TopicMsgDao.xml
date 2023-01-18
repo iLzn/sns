@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.reuleaux.sns.module.before.dao.TopicMsgDao">
+
+    <select id="getAllTopicMsg" resultType="com.reuleaux.sns.module.before.domain.TopicMsg">
+        select *
+        from sns.tbl_topicMsg
+    </select>
+
+    <insert id="insertTopicMsg">
+        insert into sns.tbl_topicMsg(topicUuid,msgContent,publishDate,userUuid,isRead,publisherUuid)
+        values (#{topicUuid},#{msgContent},#{publishDate},#{userUuid},#{isRead},#{publisherUuid})
+    </insert>
+
+
+    <select id="getAllTopicMsgVo" resultType="com.reuleaux.sns.module.before.vo.TopicMsgVo">
+        select
+               topicMsg.id as id,
+               topicUuid,
+               unick,
+               msgContent,
+               publishDate,
+               publisherUuid,
+               userHeaderImg
+        from sns.tbl_topicMsg as topicMsg
+                 join
+             sns.tbl_user as user
+             on
+                 user.userUuid = topicMsg.publisherUuid
+                 join
+             sns.tbl_userInfo as userInfo
+             on
+                 userInfo.userUuid = user.userUuid
+        where topicMsg.userUuid = #{userUUid}
+    </select>
+</mapper>
+

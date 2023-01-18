@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.reuleaux.sns.module.before.dao.UserDao">
+
+    <select id="getAllUser" resultType="com.reuleaux.sns.module.before.domain.User">
+        select *
+        from sns.tbl_user
+    </select>
+
+
+    <select id="getUserById" resultType="com.reuleaux.sns.module.before.domain.User">
+        select *
+        from sns.tbl_user
+        where userUuid = #{id}
+    </select>
+
+    <insert id="insertUser">
+        insert into sns.tbl_user values (#{userUuid},
+                                 #{unick},
+                                 #{uname},
+                                 #{upwd},
+                                 #{uemail},
+                                 #{expireTime},
+                                 #{ustate},
+                                 #{ugroups},
+                                 #{createBy},
+                                 #{createTime},
+                                 #{editBy},
+                                 #{editTime},
+                                 #{ip})
+    </insert>
+</mapper>
+

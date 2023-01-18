@@ -13,12 +13,13 @@
     <!--自定义类型-->
     <typeAliases>
         <!--直接指定别名为类名-->
-        <package name="com.reuleaux.sns.module.before.domain,com.reuleaux.sns.module.admin.domain"/>
+        <package name="com.reuleaux.sns.module.before.domain"/>
+        <package name="com.reuleaux.sns.module.admin.domain"/>
     </typeAliases>
 
     <!-- sql mapper(sql映射文件)的位置-->
     <mappers>
-        <package name="com.reuleaux.sns.module.before.dao,com.reuleaux.sns.module.admin.dao"/>
+        <package name="com.reuleaux.sns.module.before.dao"/>
+        <package name="com.reuleaux.sns.module.admin.dao"/>
     </mappers>
-<!--    -->
 </configuration>
