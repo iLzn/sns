@@ -18,13 +18,32 @@ public class TopicMsgServiceImp implements TopicMsgService {
     @Resource
     TopicMsgDao topicMsgDao;
 
+
+
     /**
-     *
-     * @return 以json格式响应ajax 返回一个topicMsgVo集合
+     * @return 返回一个topicMsgVo集合
      */
     @Override
-    public List<TopicMsgVo>  getAllTopicMsgVo() {
-        List<TopicMsgVo> topicMsgVoList = topicMsgDao.getAllTopicMsgVo("5c173b3312794537af02bf0237349df1");
+    public List<TopicMsgVo> getAllTopicMsgVo(String userUuid) {
+        List<TopicMsgVo> topicMsgVoList = topicMsgDao.getAllTopicMsgVo(userUuid);
         return topicMsgVoList;
+    }
+    /**
+     * @return 返回一话题消息的数量
+     */
+    @Override
+    public int getTopicMsgCount(String userUuid) {
+        int count = topicMsgDao.getTopicMsgCount(userUuid);
+        return count;
+    }
+
+    /**
+     *
+     * @return 返回修改数量
+     */
+    @Override
+    public int updateTopicMsgReadState(String[] topicMsgIdArry) {
+        int count = topicMsgDao.updateTopicMsgReadState(topicMsgIdArry);
+        return count;
     }
 }

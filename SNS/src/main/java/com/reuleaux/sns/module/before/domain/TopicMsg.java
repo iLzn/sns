@@ -2,15 +2,16 @@ package com.reuleaux.sns.module.before.domain;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 /**
  * @author 杉树下的松子
- * @date 2023/1/17 23:06
+ * @date 2023/1/19 10:34
  */
 @Entity
 @Table(name = "tbl_topicMsg", schema = "sns")
 public class TopicMsg {
-    private int id;
+    private String id;
     private String topicUuid;
     private String msgContent;
     private Timestamp publishDate;
@@ -20,11 +21,11 @@ public class TopicMsg {
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -92,31 +93,18 @@ public class TopicMsg {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         TopicMsg topicMsg = (TopicMsg) o;
-
-        if (id != topicMsg.id) return false;
-        if (isRead != topicMsg.isRead) return false;
-        if (topicUuid != null ? !topicUuid.equals(topicMsg.topicUuid) : topicMsg.topicUuid != null) return false;
-        if (msgContent != null ? !msgContent.equals(topicMsg.msgContent) : topicMsg.msgContent != null) return false;
-        if (publishDate != null ? !publishDate.equals(topicMsg.publishDate) : topicMsg.publishDate != null)
-            return false;
-        if (userUuid != null ? !userUuid.equals(topicMsg.userUuid) : topicMsg.userUuid != null) return false;
-        if (publisherUuid != null ? !publisherUuid.equals(topicMsg.publisherUuid) : topicMsg.publisherUuid != null)
-            return false;
-
-        return true;
+        return isRead == topicMsg.isRead &&
+                Objects.equals(id, topicMsg.id) &&
+                Objects.equals(topicUuid, topicMsg.topicUuid) &&
+                Objects.equals(msgContent, topicMsg.msgContent) &&
+                Objects.equals(publishDate, topicMsg.publishDate) &&
+                Objects.equals(userUuid, topicMsg.userUuid) &&
+                Objects.equals(publisherUuid, topicMsg.publisherUuid);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (topicUuid != null ? topicUuid.hashCode() : 0);
-        result = 31 * result + (msgContent != null ? msgContent.hashCode() : 0);
-        result = 31 * result + (publishDate != null ? publishDate.hashCode() : 0);
-        result = 31 * result + (userUuid != null ? userUuid.hashCode() : 0);
-        result = 31 * result + isRead;
-        result = 31 * result + (publisherUuid != null ? publisherUuid.hashCode() : 0);
-        return result;
+        return Objects.hash(id, topicUuid, msgContent, publishDate, userUuid, isRead, publisherUuid);
     }
 }

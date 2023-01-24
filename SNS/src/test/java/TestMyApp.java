@@ -40,6 +40,7 @@ public class TestMyApp {
         Faker faker = FakerDataUtil.setChina();
         for (int i = 0; i < 100; i++) {
             TopicMsg topicMsg = new TopicMsg();
+            topicMsg.setId(UUIDUtil.getUUID());
             topicMsg.setTopicUuid("61326068ff9f47428f05fdccfea8ea9b");
             topicMsg.setMsgContent(faker.backToTheFuture().quote());
             topicMsg.setPublishDate(DateTimeUtil.getSysTimeSql());
@@ -47,6 +48,11 @@ public class TestMyApp {
             topicMsg.setIsRead(0);
             topicMsg.setPublisherUuid("68c05ec6f4694baaab83a3e5bcfbbd5d");
             topicMsgDao.insertTopicMsg(topicMsg);
+//            try {
+//                Thread.sleep(2000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
         }
         sqlSession.commit();
         sqlSession.close();
@@ -78,6 +84,10 @@ public class TestMyApp {
         }
         sqlSession.commit();
         sqlSession.close();
+    }
+
+    @Test
+    public void testInteger(){
     }
 }
 

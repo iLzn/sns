@@ -5,7 +5,7 @@ package com.reuleaux.sns.module.before.vo;
  * @date 2023/1/17 18:29
  */
 public class TopicMsgVo {
-    int id;
+    String id;
     String topicUuid;
     String unick;
     String userHeaderImg;
@@ -13,7 +13,11 @@ public class TopicMsgVo {
     String publishDate;
     String publisherUuid;
 
-    public TopicMsgVo(int id, String topicUuid, String unick, String userHeaderImg, String msgContent, String publishDate, String publisherUuid) {
+    public String getId() {
+        return id;
+    }
+
+    public TopicMsgVo(String id, String topicUuid, String unick, String userHeaderImg, String msgContent, String publishDate, String publisherUuid) {
         this.id = id;
         this.topicUuid = topicUuid;
         this.unick = unick;
@@ -26,13 +30,6 @@ public class TopicMsgVo {
     public TopicMsgVo() {
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getTopicUuid() {
         return topicUuid;
