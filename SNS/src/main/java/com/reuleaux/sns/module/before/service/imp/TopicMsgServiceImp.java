@@ -1,8 +1,11 @@
 package com.reuleaux.sns.module.before.service.imp;
 
 import com.reuleaux.sns.module.before.dao.TopicMsgDao;
+import com.reuleaux.sns.module.before.domain.TopicMsg;
 import com.reuleaux.sns.module.before.service.TopicMsgService;
 import com.reuleaux.sns.module.before.vo.TopicMsgVo;
+import com.reuleaux.sns.utils.DateTimeUtil;
+import com.reuleaux.sns.utils.UUIDUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -35,6 +38,20 @@ public class TopicMsgServiceImp implements TopicMsgService {
     public int getTopicMsgCount(String userUuid) {
         int count = topicMsgDao.getTopicMsgCount(userUuid);
         return count;
+    }
+
+    /**
+     *
+     *return 插入数量
+     *
+     */
+    @Override
+    public int insertTopicMsg(TopicMsg topicMsg) {
+        topicMsg.setId(UUIDUtil.getUUID());
+        topicMsg.setPublishDate(DateTimeUtil.getSysTimeSql());
+        topicMsg.setIsRead(0);
+        int count = topicMsgDao.insertTopicMsg(topicMsg);
+        return 0;
     }
 
     /**

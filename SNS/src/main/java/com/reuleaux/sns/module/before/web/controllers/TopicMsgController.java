@@ -1,11 +1,11 @@
 package com.reuleaux.sns.module.before.web.controllers;
 
 import com.github.pagehelper.PageHelper;
+import com.reuleaux.sns.module.before.domain.TopicMsg;
 import com.reuleaux.sns.module.before.service.TopicMsgService;
 import com.reuleaux.sns.module.before.vo.TopicMsgVo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -42,6 +42,19 @@ public class TopicMsgController {
     @ResponseBody
     public String updateTopicMsgReadState(String []topicMsgIdArrys) {
         topicMsgService.updateTopicMsgReadState(topicMsgIdArrys);
+        return "success";
+    }
+
+    //插入消息
+    @RequestMapping(value = "/insertTopicMsg.do")
+    @ResponseBody
+    public String insertTopicMsg(String topicUuid,String msgContent,String userUuid,String publisherUuid) {
+        TopicMsg topicMsg = new TopicMsg();
+        topicMsg.setTopicUuid(topicUuid);
+        topicMsg.setMsgContent(msgContent);
+        topicMsg.setUserUuid(userUuid);
+        topicMsg.setPublisherUuid(publisherUuid);
+        topicMsgService.insertTopicMsg(topicMsg);
         return "success";
     }
 }

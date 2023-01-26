@@ -38,11 +38,11 @@ public class TestMyApp {
         SqlSession sqlSession = MyBatisUtils.getSqlSession();
         TopicMsgDao topicMsgDao = sqlSession.getMapper(TopicMsgDao.class);
         Faker faker = FakerDataUtil.setChina();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 20; i++) {
             TopicMsg topicMsg = new TopicMsg();
             topicMsg.setId(UUIDUtil.getUUID());
             topicMsg.setTopicUuid("61326068ff9f47428f05fdccfea8ea9b");
-            topicMsg.setMsgContent(faker.backToTheFuture().quote());
+            topicMsg.setMsgContent(faker.backToTheFuture().quote());//
             topicMsg.setPublishDate(DateTimeUtil.getSysTimeSql());
             topicMsg.setUserUuid("5c173b3312794537af02bf0237349df1");
             topicMsg.setIsRead(0);

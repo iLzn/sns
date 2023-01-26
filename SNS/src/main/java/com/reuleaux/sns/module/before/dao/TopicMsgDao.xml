@@ -20,7 +20,6 @@
     <select id="getAllTopicMsgVo" resultType="com.reuleaux.sns.module.before.vo.TopicMsgVo">
         select
                id,
-               topicMsg.id,
                topicUuid,
                unick,
                msgContent,
